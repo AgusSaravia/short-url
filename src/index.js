@@ -49,10 +49,7 @@ app.get(
 // API Route to Create Short URL
 app.use(express.static("public"));
 
-app.post(
-  "https://short-url-git-deploytest-agussaravias-projects.vercel.app/short",
-  urlController.createShortUrl
-);
+app.post("/short", urlController.createShortUrl);
 app.get("/url-table", urlController.buildUrlTable);
 
 // Route to Handle Redirection
