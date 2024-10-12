@@ -1,0 +1,5 @@
+#url-table tbody tr td#longUrl {
+  max-width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
