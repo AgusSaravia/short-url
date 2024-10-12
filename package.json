@@ -2,7 +2,7 @@
   "name": "short-url",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {	
+  "scripts": {
     "dev": "nodemon src/index.js",
     "format": "prettier -w src public",
     "start": "node src/index.js"
