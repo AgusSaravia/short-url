@@ -25,26 +25,23 @@ function errorHandler(err, req, res, next) {
 app.use(errorHandler);
 
 // Serve Home Page
-app.get(
-  "https://short-url-git-deploytest-agussaravias-projects.vercel.app/",
-  (req, res) => {
-    const options = {
-      root: path.join(__dirname, "../public"),
-    };
-    const fileName = "index.html";
+app.get("/", (req, res) => {
+  const options = {
+    root: path.join(__dirname, "../public"),
+  };
+  const fileName = "index.html";
 
-    res.sendFile(fileName, options, function (err) {
-      if (!err) {
-        console.log("Sent:", fileName);
-      } else {
-        console.error("Error sending file:", err);
-        res
-          .status(500)
-          .json({ error: "Internal Server Error, could not render home page" });
-      }
-    });
-  }
-);
+  res.sendFile(fileName, options, function (err) {
+    if (!err) {
+      console.log("Sent:", fileName);
+    } else {
+      console.error("Error sending file:", err);
+      res
+        .status(500)
+        .json({ error: "Internal Server Error, could not render home page" });
+    }
+  });
+});
 
 // API Route to Create Short URL
 app.use(express.static("public"));
