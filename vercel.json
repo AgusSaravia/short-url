@@ -9,7 +9,7 @@
   "routes": [
     {
       "src": "/",
-      "dest": "/index.js"
+      "dest": "./index.js"
     },
     {
       "src": "/short",
@@ -17,11 +17,11 @@
     },
     {
       "src": "/url-table",
-      "dest": "/index.js"
+      "dest": "./index.js"
     },
     {
       "src": "/:id",
-      "dest": "/index.js"
+      "dest": "./index.js"
     }
   ]
 }
