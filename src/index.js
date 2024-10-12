@@ -49,36 +49,46 @@ app.get(
 // API Route to Create Short URL
 app.use(express.static("public"));
 
-app.post("/short", urlController.createShortUrl);
-app.get("/url-table", urlController.buildUrlTable);
+app.post(
+  "https://short-url-git-deploytest-agussaravias-projects.vercel.app/short",
+  urlController.createShortUrl
+);
+app.get(
+  "https://short-url-git-deploytest-agussaravias-projects.vercel.app/url-table",
+  urlController.buildUrlTable
+);
 
 // Route to Handle Redirection
-app.get("/:id", async (req, res) => {
-  const id = req.params.id;
+app.get(
+  "https://short-url-git-deploytest-agussaravias-projects.vercel.app/:id",
+  async (req, res) => {
+    const id = req.params.id;
 
-  try {
-    const result = await query(
-      "SELECT long_url FROM urls WHERE short_url = $1",
-      [id]
-    );
+    try {
+      const result = await query(
+        "SELECT long_url FROM urls WHERE short_url = $1",
+        [id]
+      );
 
-    if (result.rows.length > 0) {
-      const long_url = result.rows[0].long_url;
-      const currentClicks = result.rows[0].clicks;
+      if (result.rows.length > 0) {
+        const long_url = result.rows[0].long_url;
+        const currentClicks = result.rows[0].clicks;
 
-      await query("update urls set clicks = clicks + 1 where short_url = $1", [
-        id,
-      ]);
+        await query(
+          "update urls set clicks = clicks + 1 where short_url = $1",
+          [id]
+        );
 
-      res.redirect(long_url); // Redirect to the original URL
-    } else {
-      res.status(404).json({ error: "Short URL not found." });
+        res.redirect(long_url); // Redirect to the original URL
+      } else {
+        res.status(404).json({ error: "Short URL not found." });
+      }
+    } catch (error) {
+      console.error("Error fetching original URL:", error);
+      res.status(500).json({ error: "Internal Server Error." });
     }
-  } catch (error) {
-    console.error("Error fetching original URL:", error);
-    res.status(500).json({ error: "Internal Server Error." });
   }
-});
+);
 
 // Start the Server
 app.listen(PORT, () => {
