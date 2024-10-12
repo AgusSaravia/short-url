@@ -16,7 +16,10 @@
   </head>
   <body>
     <div class="container-xl mt-4">
-      <form hx-post="/short" hx-target="#url-table">
+      <form
+        hx-post="https://short-url-git-deploytest-agussaravias-projects.vercel.app/short"
+        hx-target="#url-table"
+      >
         <div class="mb-3">
           <label for="longUrl" class="form-label">URL Original:</label>
           <input
@@ -37,7 +40,7 @@
     <div
       id="url-table"
       class="container-xl overflow-scroll"
-      hx-get="/url-table"
+      hx-get="https://short-url-git-deploytest-agussaravias-projects.vercel.app/url-table"
       hx-trigger="load, every 5s"
     >
       <table class="table table-striped">
