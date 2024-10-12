@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/index.js"
+    },
+    {
+      "src": "/short",
+      "dest": "/index.js"
+    },
+    {
+      "src": "/url-table",
+      "dest": "/index.js"
+    },
+    {
+      "src": "/:id",
+      "dest": "/index.js"
+    }
+  ]
+}
